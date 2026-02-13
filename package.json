@@ -1,5 +1,5 @@
 {
-  "name": "@yonki/rateshield",
+  "name": "@yonkidev/rateshield",
   "version": "1.0.0",
   "description": "Simple and extensible rate limit guard for NestJS",
   "main": "dist/index.js",
