@@ -35,14 +35,18 @@ import { RateShieldModule } from '@yonki/rateshield';
 @Module({
   imports: [
     RateShieldModule.forRoot({
+      // Set the storage type (currently only 'memory' is supported, Redis will be suported soon).
+      storage: 'memory',
       rules: {
         LOGIN: {
-          limit: 5,
-          windowMs: 60000
+          maxRequests: 5,
+          windowMs: 60,
+          blockDurationMs: 300
         },
         EDIT_USER: {
-          limit: 10,
-          windowMs: 60000
+          maxRequests: 10,
+          windowMs: 60,
+          blockDurationMs: 60
         }
       }
     })
@@ -50,6 +54,10 @@ import { RateShieldModule } from '@yonki/rateshield';
 })
 export class AppModule {}
 ```
+
+Notes:
+- **Storage:** set `storage` to the storage provider you want (for now use `'memory'`).
+- **Fields:** `maxRequests` — máximo de requisições por janela; `windowMs` — janela em segundos; `blockDurationMs` — duração do bloqueio em segundos após estourar o limite.
 
 ## Usage
 
